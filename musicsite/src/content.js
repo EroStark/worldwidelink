@@ -55,7 +55,7 @@ class Content extends React.Component {
       })
       this.setState({
         comments: commentArray
-      })
+      }), this.scrollToBottom()
     })
     .catch(err => {
       console.log(err);
@@ -93,7 +93,7 @@ class Content extends React.Component {
       <div className ="content">
        <div>
         <div className="cover">
-        <iframe width="770" height="433.125" src="https://www.youtube.com/embed/TXSxwfJmvr8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        <iframe className="viddy" src="https://www.youtube.com/embed/TXSxwfJmvr8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
 
         <div className="embeds">
