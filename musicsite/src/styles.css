@@ -16,8 +16,9 @@ body{
 }
 
 .embeds{
-  padding-top: 190px;
-  width:350px;
+  display:flex;
+  justify-content: space-between;
+  width:100%;
 }
 
 .cover{
