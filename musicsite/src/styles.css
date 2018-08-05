@@ -1,0 +1,93 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+body{
+  background-color: #043253
+}
+
+.content {
+  display:flex;
+  justify-content: space-around;
+}
+.submit{
+   height: 100%;
+}
+
+.embeds{
+  padding-top: 190px;
+  width:350px;
+}
+
+.cover{
+  padding-top: 190px;
+}
+
+.earth{
+  position: absolute;
+  top:1;
+  bottom: 10;
+  left: 0;
+  right: 0;
+  margin: auto;
+  height: 175px;
+  width: 175px;
+  background-image: url(http://soileiragusgonta.com/wp-content/uploads/2018/04/earth-map-hd-1-dual-monitor-wallpapers-hd-id-8218.jpg);
+  border-radius: 50%;
+  background-size: cover;
+  box-shadow: -20px -20px 50px 2px #000 inset, 0 0 20px 2px #46aaf0;
+  animation: spin 30s linear alternate infinite;
+}
+
+@keyframes spin{
+  100%{background-position:170%}
+}
+
+.container-1 input#text {
+  width: 300px;
+  height: 30px;
+  background: #9f1e1ead;
+  border: none;
+  font-size: 10pt;
+  float: left;
+  color: rgb(245, 248, 252);
+  padding-left: 45px;
+  overflow: visible;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-transition: background .55s ease;
+  -moz-transition: background .55s ease;
+  -ms-transition: background .55s ease;
+  -o-transition: background .55s ease;
+  transition: background .55s ease;
+}
+
+.container-1 input#text:hover,
+.container-1 input#text:focus,
+.container-1 input#text:active {
+  outline: none;
+  background: rgba(201, 217, 245, 0.74);
+  ;
+}
+
+.chatbox{
+  overflow: auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  height:630px;
+  background-color: rgba(201, 217, 245, 0);
+}
+
+.comContainer{
+  overflow: auto;
+  width:350px;
+    display: flex;
+    padding-left: 12px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    border-radius: 5px;
+    margin-top: 3px;
+    background-color: rgb(218, 238, 248 , 0.6);
+}
