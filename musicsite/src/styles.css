@@ -45,7 +45,6 @@ body{
 }
 
 .container-1 input#text {
-  width: 300px;
   height: 30px;
   background: #9f1e1ead;
   border: none;
@@ -72,6 +71,15 @@ body{
   ;
 }
 
+
+.newName {
+  width: 70px;
+}
+
+.newComment{
+  width: 220px;
+  margin-left: 6px;
+}
 .chatbox{
   overflow: auto;
   padding-top: 10px;
@@ -80,14 +88,18 @@ body{
   background-color: rgba(201, 217, 245, 0);
 }
 
+.history{
+  font-style: italic;
+  font-size: 10px
+}
+
 .comContainer{
-  overflow: auto;
   width:350px;
-    display: flex;
     padding-left: 12px;
     padding-top: 6px;
     padding-bottom: 6px;
     border-radius: 5px;
     margin-top: 3px;
     background-color: rgb(218, 238, 248 , 0.6);
+    word-wrap: break-word; 
 }

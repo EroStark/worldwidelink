@@ -1,5 +1,6 @@
 import React from 'react';
 import {animateScroll} from "react-scroll";
+import axios from "axios";
 
 
 
@@ -8,23 +9,32 @@ class Content extends React.Component {
     super();
     this.state = {
       newComment: "",
+      newName: "",
       comments: []
     }
   }
 
   handleTextInput = e => {
     this.setState({
-      newComment: e.target.value
+      [e.target.className]: e.target.value
     })
   }
 
   handleSubmit = e => {
     e.preventDefault()
-    const { newComment, comments } = this.state
-    this.setState({
-      newComment: "",
-      comments: [...comments, newComment]
-    }, this.scrollToBottom())
+    const { newComment, newName, comments } = this.state
+    const history = new Date().toLocaleString()
+    const newPacket = {username: newName , comment: newComment , history: history}
+    
+    console.log("Here", history)
+    if(newComment !== "" && newName !== ""){
+      this.addComment(newPacket)
+        this.setState({
+        newComment: "",
+        newName: "",
+        comments: [...comments, newPacket]
+      }, this.scrollToBottom())
+    }
   
   }
 
@@ -34,8 +44,48 @@ class Content extends React.Component {
     })
   }
 
+  getComments = () => {
+    axios
+    .get("/getcomments")
+    .then(res => {
+      var madeComments = res.data.data
+      var commentArray = []
+      madeComments.forEach( comment => {
+        commentArray = [...commentArray, comment]
+      })
+      this.setState({
+        comments: commentArray
+      })
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  };
+
+  addComment = newComment => {
+    
+    axios
+    .post('/newComment', {
+      username: newComment.username,
+      comment: newComment.comment,
+      history: newComment.history
+    })
+    .then(res => {
+      console.log('success')
+    })
+    .catch(err => {
+      this.setState({
+        message: "Error posting new image"
+      })
+    })
+  }
+
+  componentDidMount() {
+    this.getComments();
+  }
+
   render(){
-    const {newComment , comments} = this.state
+    const {newComment, newName , comments} = this.state
     let commentCopy = [...comments]
     let commentsRefresh = commentCopy.reverse()
     console.log("normal", commentCopy, "reverse",commentCopy.reverse())
@@ -67,14 +117,15 @@ class Content extends React.Component {
        <div className="submit container-1">
           <div className= "chatbox" id="chatbox" >
               {commentsRefresh.map(comment => (
-                <div className="comContainer"> {comment} </div>
+                <div className="comContainer"> <div><b>{comment.username}</b> says "{comment.comment}" </div> <div className="history">{comment.history}</div></div>
               ))}
           </div>
           
           <form
           onSubmit={this.handleSubmit}
           >
-          <input id="text" type="text" value={newComment} onChange={this.handleTextInput} placeholder="Leave a Comment" />
+          <input id="text" type="text" className="newName" value={newName} onChange={this.handleTextInput} placeholder="Name" />
+          <input id="text" type="text" className="newComment" value={newComment} onChange={this.handleTextInput} placeholder="Leave a Comment" />
           <button >Submit</button>
           </form>
 
